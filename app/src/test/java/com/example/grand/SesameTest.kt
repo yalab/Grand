@@ -10,7 +10,7 @@ class SesameTest {
     val mSesame = Sesame()
 
     @Test
-    fun url() {
-        assertEquals("https://", mSesame.url())
+    fun open() {
+        assertEquals("https://", mSesame.open())
     }
 }
