@@ -14,6 +14,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        def properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        buildConfigField("String", "SESAME_AUTH_TOKEN ", "\"${properties.getProperty("SESAME_AUTH_TOKEN")}\"")
+        buildConfigField("String", "SESAME_DEVICE_ID", "\"${properties.getProperty("SESAME_DEVICE_ID")}\"")
     }
     buildTypes {
         release {
