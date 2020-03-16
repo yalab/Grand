@@ -1,5 +1,6 @@
 package com.example.grand
 
+import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -13,14 +14,18 @@ class Webhook{
         conn.setRequestProperty("Content-Type", "application/json")
         val authToken = BuildConfig.SESAME_AUTH_TOKEN
         conn.setRequestProperty("Authorization", authToken)
+        val params = "{\"command\":\"lock\"}" as java.lang.String
         var output = conn.getOutputStream()
-        val body = "{\"command\":\"unlock\"}" as java.lang.String
-        output.write(body.getBytes())
+        output.write(params.getBytes())
         output.flush()
         output.close()
-        val input = conn.getInputStream()
-        input.read()
-        input.close()
-        return "https://"
+        val input = BufferedInputStream(conn.getInputStream())
+        var buf : ByteArray
+        try {
+            buf = input.readBytes()
+        } finally {
+            conn.disconnect()
+        }
+        return String(buf)
     }
 }

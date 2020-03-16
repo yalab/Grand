@@ -8,7 +8,7 @@ class WebhookTest {
     val mWebhook = Webhook()
 
     @Test
-    fun open() {
-        assertEquals("https://", mWebhook.call())
+    fun call() {
+        assertEquals("{\"task_id\":", mWebhook.call().substring(0, 11))
     }
 }
