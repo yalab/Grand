@@ -3,7 +3,7 @@ package com.example.grand
 import java.net.HttpURLConnection
 import java.net.URL
 
-class Sesame{
+class Webhook{
     fun open() : String {
         val url = URL("https://api.candyhouse.co/public/sesame/" + BuildConfig.SESAME_DEVICE_ID)
         val conn = url.openConnection() as HttpURLConnection

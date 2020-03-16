@@ -4,11 +4,11 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class SesameTest {
-    val mSesame = Sesame()
+class WebhookTest {
+    val mWebhook = Webhook()
 
     @Test
     fun open() {
-        assertEquals("https://", mSesame.open())
+        assertEquals("https://", mWebhook.open())
     }
 }
