@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         (findViewById(R.id.open_button) as Button).setOnClickListener {
             Thread(Runnable {
-                Webhook().open()
+                Webhook().call()
             }).start()
         }
     }

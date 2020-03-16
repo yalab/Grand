@@ -9,6 +9,6 @@ class WebhookTest {
 
     @Test
     fun open() {
-        assertEquals("https://", mWebhook.open())
+        assertEquals("https://", mWebhook.call())
     }
 }

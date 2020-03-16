@@ -4,7 +4,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class Webhook{
-    fun open() : String {
+    fun call() : String {
         val url = URL("https://api.candyhouse.co/public/sesame/" + BuildConfig.SESAME_DEVICE_ID)
         val conn = url.openConnection() as HttpURLConnection
         conn.doOutput = true
