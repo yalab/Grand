@@ -6,15 +6,10 @@ import android.content.Context
 import android.widget.RemoteViews
 import android.content.ComponentName
 import android.app.PendingIntent
-import android.R.attr.action
-import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import android.content.Intent
 import android.widget.Toast
 
 
-/**
- * Implementation of App Widget functionality.
- */
 class Widget : AppWidgetProvider() {
     private val ACTION = "open"
     var lock = false
@@ -23,7 +18,6 @@ class Widget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
@@ -50,9 +44,7 @@ class Widget : AppWidgetProvider() {
         if (!lock && ACTION.equals(intent.getAction())) {
             lock = true
             Toast.makeText(context, ACTION, 1).show()
-            Thread(Runnable {
-                Webhook().call()
-            }).start()
+            WebhookIntentService.startActionOpen(context);
         }
     }
 }
@@ -63,9 +55,6 @@ internal fun updateAppWidget(
     appWidgetId: Int
 ) {
     val widgetText = context.getString(R.string.appwidget_text)
-    // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget)
-
-    // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }

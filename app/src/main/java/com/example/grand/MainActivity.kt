@@ -12,9 +12,7 @@ class MainActivity : AppCompatActivity() {
 
 
         (findViewById(R.id.open_button) as Button).setOnClickListener {
-            Thread(Runnable {
-                Webhook().call()
-            }).start()
+            WebhookIntentService.startActionOpen(this);
         }
     }
 }
