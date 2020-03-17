@@ -3,11 +3,11 @@ package com.example.grand
 import android.app.IntentService
 import android.content.Intent
 import android.content.Context
+import kotlinx.coroutines.*
 
 private const val ACTION_OPEN = "com.example.grand.action.OPEN"
 
 class WebhookIntentService : IntentService("WebhookIntentService") {
-
     override fun onHandleIntent(intent: Intent?) {
         when (intent?.action) {
             ACTION_OPEN -> {
@@ -17,9 +17,10 @@ class WebhookIntentService : IntentService("WebhookIntentService") {
     }
 
     private fun handleActionOpen() {
-        Thread(Runnable {
-            Webhook().call()
-        }).start()
+        runBlocking {
+            val ret = async { Webhook().call() }.await()
+            println(ret)
+        }
     }
 
 
