@@ -13,11 +13,7 @@ import android.widget.Toast
 class Widget : AppWidgetProvider() {
     private val ACTION = "open"
     var lock = false
-    override fun onUpdate(
-        context: Context,
-        appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
-    ) {
+    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
@@ -49,11 +45,7 @@ class Widget : AppWidgetProvider() {
     }
 }
 
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
+internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
     val views = RemoteViews(context.packageName, R.layout.widget)
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }

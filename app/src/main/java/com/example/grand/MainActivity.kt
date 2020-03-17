@@ -9,8 +9,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         (findViewById(R.id.open_button) as Button).setOnClickListener {
             WebhookIntentService.startActionOpen(this);
         }

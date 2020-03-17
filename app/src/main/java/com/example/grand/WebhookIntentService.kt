@@ -13,9 +13,7 @@ private const val ACTION_OPEN = "com.example.grand.action.OPEN"
 class WebhookIntentService : IntentService("WebhookIntentService") {
     override fun onHandleIntent(intent: Intent?) {
         when (intent?.action) {
-            ACTION_OPEN -> {
-                handleActionOpen()
-            }
+            ACTION_OPEN -> { handleActionOpen() }
         }
     }
 
@@ -29,11 +27,7 @@ class WebhookIntentService : IntentService("WebhookIntentService") {
 
     private fun showToast(message: String) {
         Handler(Looper.getMainLooper()).post(Runnable {
-            Toast.makeText(
-                applicationContext,
-                message,
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
         })
     }
 
