@@ -4,6 +4,9 @@ import android.app.IntentService
 import android.content.Intent
 import android.content.Context
 import kotlinx.coroutines.*
+import android.widget.Toast
+import android.os.Looper
+import android.os.Handler
 
 private const val ACTION_OPEN = "com.example.grand.action.OPEN"
 
@@ -18,11 +21,21 @@ class WebhookIntentService : IntentService("WebhookIntentService") {
 
     private fun handleActionOpen() {
         runBlocking {
-            val ret = async { Webhook().call() }.await()
-            println(ret)
+            showToast("Call open")
+            val responseBody = async { Webhook().call() }.await()
+            showToast(responseBody)
         }
     }
 
+    private fun showToast(message: String) {
+        Handler(Looper.getMainLooper()).post(Runnable {
+            Toast.makeText(
+                applicationContext,
+                message,
+                Toast.LENGTH_LONG
+            ).show()
+        })
+    }
 
     companion object {
         @JvmStatic
